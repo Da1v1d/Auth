@@ -6,7 +6,7 @@ import { useHistory } from "react-router";
 import { showErrorMessage , setLocalStorage } from "../logic";
 import { routeUrls } from "../Routes/routeUrls";
 import { useDispatch, useSelector} from 'react-redux';
-import { addAccount, createUser } from "../store/action";   
+import { addAccount, createUser } from "../store/user/user-actions";   
 import { useEffect } from "react";
 import { useUserData } from "../customHooks/useUserData";
 import * as api from '../api/api'

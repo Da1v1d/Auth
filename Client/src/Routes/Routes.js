@@ -12,15 +12,7 @@ const Routes = () =>{
         <Switch>
             <Route exact={true} path={routeUrls.Login}> <Login /> </Route>
             <Route path={routeUrls.Registration}> <Registration /> </Route>
-            {/* <AccesControl> */}
                 {routes.map((route,id)=>
-                    // <Route 
-                    //     key={id} 
-                    //     path={route.path} 
-                    //     exact={route.exact}
-                    // >
-                    //     {route.component}
-                    // </Route>
                 <ProtectedRoute 
                     Component={route.component} 
                     key={id}
@@ -28,7 +20,6 @@ const Routes = () =>{
                 >
                 </ProtectedRoute>
                 )}
-            {/* </AccesControl> */}
         </Switch>
     )
 }

@@ -4,7 +4,7 @@ import { useHistory } from 'react-router'
 import { useUserData } from '../../customHooks/useUserData'
 import '../../profile.css'
 import { routeUrls } from '../../Routes/routeUrls'
-import { getUserData, getUsers } from '../../store/action'
+import { getUserData, getUsers } from '../../store/user/user-actions'
 // import { Button, Container, IconButton , Link , Box , Menu , MenuItem, Avatar, Paper, Tabs, Tab } from '@mui/material'
 // import MenuIcon from '@mui/icons-material/Menu'; 
 import Navbar from '../Navbar/Navbar'

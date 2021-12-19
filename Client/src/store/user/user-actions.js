@@ -1,5 +1,5 @@
-import { ADD_ACCOUNT , LOGIN_USER, GET_USERS , IS_LOGINING } from "./action-types";
-import * as api from '../api/api'
+import { ADD_ACCOUNT , LOGIN_USER, GET_USERS , IS_LOGINING } from "./user-action-types";
+import * as api from '../../api/api'
 
 
 export const addAccount = (data) => {

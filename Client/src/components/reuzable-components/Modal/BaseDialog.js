@@ -1,30 +1,26 @@
 import React, { useEffect } from 'react'
 import {Dialog, DialogTitle} from '@mui/material'
+import CloseIcon from '@mui/icons-material/Close'; 
 
 const BaseDialog = ({
     isOpen,
     title,
-    ...props
+    closeDialog,
+    ...rest
 }) =>{
 
+
     const dialogStyles = {
-
-        '&.MuiDialog-paper':{
-            background:'#26262A',
-            color:'white'
-        },
-
+        '& .MuiDialog-paper':{
+                background:'#26262A',
+                color:'white'
+            },
         '&.MuiDialogTitle-root':{
             display:'flex',
             justifyContent:'space-between', 
             alignItems:'center'
         }
     }
-
-    useEffect(()=>{
-
-    },[])
-
 
     return (
         <Dialog
@@ -34,7 +30,7 @@ const BaseDialog = ({
         >
             <DialogTitle>
                 {title}
-                <CloseIcon sx={{color:'white'}} onClick={() => setOpen(false)} />
+                <CloseIcon sx={{color:'white'}} onClick={closeDialog} />
             </DialogTitle>
 
         </Dialog>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Redirect, withRouter } from 'react-router-dom'
+import { withRouter } from 'react-router-dom'
 import { Route } from 'react-router-dom'
 import { useUserData } from '../../customHooks/useUserData'
 import { routeUrls } from '../../Routes/routeUrls'
@@ -12,7 +12,7 @@ const ProtectedRoute = ({Component, history , ...rest})=>{
         if(isLogined){
             return Component
         }
-        else return <Redirect to='/login' />
+        else history.push(routeUrls.Login)
     }
 
     return (

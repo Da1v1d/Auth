@@ -1,4 +1,4 @@
-import { ADD_ACCOUNT, GET_USERS , LOGIN_USER , IS_LOGINING } from "./action-types"
+import { ADD_ACCOUNT, GET_USERS , LOGIN_USER , IS_LOGINING } from "./user-action-types"
 
 const initialstate={
     data:{
