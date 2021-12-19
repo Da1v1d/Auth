@@ -2,6 +2,6 @@ export const routeUrls={
     Login:'/login',
     Main:'/',
     Registration:'/registration',
-    Home:'/home',
+    Home:(page)=>page?`/home/${page}`:`/home`,
     Posts:'/home/posts'
 }

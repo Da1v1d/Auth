@@ -1,17 +1,17 @@
 import React, { useEffect , useState , Suspense , useCallback, useLayoutEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { useHistory } from 'react-router'
-import { useUserData } from './customHooks/useUserData'
-import "./profile.css"
-import { routeUrls } from './Routes/routeUrls'
-import { getUserData, getUsers } from './store/action'
+import { useUserData } from '../../customHooks/useUserData'
+import '../../profile.css'
+import { routeUrls } from '../../Routes/routeUrls'
+import { getUserData, getUsers } from '../../store/action'
 import { Button, Container, IconButton , Link , Box , Menu , MenuItem, Avatar, Paper, Tabs, Tab } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'; 
-import Navbar from './components/Navbar/Navbar'
+import Navbar from '../Navbar/Navbar'
 
 
-const PostPage = React.lazy(() => import('./components/PostPage/PostPage'))
-const CustomMenuItemDialog = React.lazy(()=>import('./components/reuzable-components/Modal/CustomMenuItemDialog'))
+const PostPage = React.lazy(() => import('../PostPage/PostPage'))
+const CustomMenuItemDialog = React.lazy(()=>import('../reuzable-components/Modal/CustomMenuItemDialog'))
 
 
 
@@ -46,6 +46,7 @@ const Home = () => {
     const renderPageContent = (tabValue) => {
         switch (tabValue){
             case 0:
+               history.push(routeUrls.Home('posts'))
                 return (
                 <Suspense
                     fallback={null}
@@ -54,6 +55,7 @@ const Home = () => {
                 </Suspense>
                 )
             case 1:
+                history.push(routeUrls.Home('exo'))
                 return null
         }
 
@@ -107,17 +109,16 @@ const Home = () => {
                         localStorage.removeItem('accesToken')
                     }}>Logout</MenuItem>
                 </Menu> */}
-    <Navbar value={tabValue} onChange={handleChange} />
-
-
-
+    <Navbar 
+        value={tabValue} 
+        onChange={handleChange} 
+        menuOptions={['myprofile','logout']}
+        openMenu={open}
+        anchorEl={anchorEl}
+        handleClose={handleClose}
+        handleClickMenu={handleClickMenu}
+    />
         {renderPageContent(tabValue)}
-   
-   
-   
-   
-   
-   
     </div>
     )
 }

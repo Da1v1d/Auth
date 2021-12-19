@@ -6,26 +6,9 @@ import BaseCard from '../reuzable-components/Card/BaseCard'
 
 const PostPage = () => {
 
-    const data = [
-        {
-            name:'Exo',
-            lastname:'lastname'
-        },
-        {
-            name:'Hayko',
-            lastname:'lastname1'
-        },
-        {
-            name:'Julie',
-            lastname:'lastname2'
-        },
-        {
-            name:'Kevin',
-            lastname:'lastname3'
-        },
-    ]
+    const data=[]
 
-    const renderPosts = data.map((post,index)=>{
+    const renderPosts = data?.map((post,index)=>{
         return (
             <BaseCard name={post.name} lastname={post.lastname} key={index} />
         )

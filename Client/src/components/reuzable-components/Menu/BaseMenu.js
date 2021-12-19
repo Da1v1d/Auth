@@ -3,7 +3,10 @@ import {Menu , MenuItem,} from '@mui/material'
 
 
 const BaseMenu = ({
-    menuOptions
+    menuOptions,
+    openMenu,
+    anchorEl,
+    handleClose
 }) => {
 
 
@@ -11,7 +14,7 @@ const BaseMenu = ({
         <Menu
             id="basic-menu"
             anchorEl={anchorEl}
-            open={open}
+            open={openMenu}
             onClose={handleClose}
             MenuListProps={{
                 'aria-labelledby': 'basic-button',
@@ -21,7 +24,7 @@ const BaseMenu = ({
                 <MenuItem 
                     key={index} 
                 >
-                    
+                    {menu}
                 </MenuItem>
             ))}
         </Menu>

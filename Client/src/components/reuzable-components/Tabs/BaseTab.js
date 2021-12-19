@@ -16,7 +16,6 @@ const BaseTab = ({
             color:"white"
         }
     }
-    console.log('aaaa')
 
 
     return (

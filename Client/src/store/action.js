@@ -1,4 +1,4 @@
-import { ADD_ACCOUNT , LOGIN_USER, GET_USERS } from "./action-types";
+import { ADD_ACCOUNT , LOGIN_USER, GET_USERS , IS_LOGINING } from "./action-types";
 import * as api from '../api/api'
 
 
@@ -11,8 +11,15 @@ export const addAccount = (data) => {
     }
 }
 
+export const isLogining = (logining) =>(dispatch) => {
+    return dispatch({
+        type:IS_LOGINING,
+        payload:logining
+    })
+}
 
-export const getUsers = () => async (dispatch) => {
+
+export const getUsers = () => async (dispatch) => {  
     try {
         const {data} = await api.fetchUsers();
         dispatch({
@@ -24,14 +31,16 @@ export const getUsers = () => async (dispatch) => {
     }
 }
 
-export const loginUser = (user) => async (dispatch) =>{
+export const loginUser = (user , history) => async (dispatch) =>{
     try {
+        await dispatch(isLogining(true))
         const data = await api.loginUser(user)
         localStorage.setItem('accesToken', data.accesToken)
         dispatch({
             type:LOGIN_USER,
             payload:data.user,
         }) 
+        await dispatch(isLogining(false))
     } catch (error) {
         console.log(error)
     }
@@ -40,7 +49,6 @@ export const loginUser = (user) => async (dispatch) =>{
 export const getUserData = () => async (dispatch) => {
     try {
         const data = await api.userData()
-        console.log(data)
         dispatch ({
             type:LOGIN_USER,
             payload:data

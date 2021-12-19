@@ -11,24 +11,22 @@ import { useForm } from "react-hook-form"
 import { getLocalStorage, setLocalStorage, showErrorMessage } from "../logic"
 import { routeUrls } from "../Routes/routeUrls"
 import { useHistory } from "react-router"
-import { loginUser } from "../store/action"
+import { isLogining, loginUser } from "../store/action"
 import * as api from '../api/api'
 import { useUserData } from '../customHooks/useUserData'
 import axios from 'axios'
 import { endpoints } from '../api/endpoint'
 import FormComponent from '../components/reuzable-components/Form/FormComponent'
 import CustomTextField from '../components/reuzable-components/Input/CustomTextField'
-import { Redirect } from 'react-router-dom/cjs/react-router-dom.min'
+import { withRouter } from 'react-router-dom'
 
 
 
 
 
-
-export default function Login(){
-    const {data} = useUserData()
+const Login=({history})=>{
+    const userData = useUserData()
     const dispatch = useDispatch()
-    const history = useHistory()
     const { 
         register,
         formState,
@@ -36,12 +34,18 @@ export default function Login(){
         handleSubmit
         } = useForm({mode:'onChange'})
     const {errors , isValid , isDirty} = formState
-
-
-        const formSubmit = async (formData) => {
+        console.log(userData.isLoggining)
+        const formSubmit = async (formData ) => {
                 dispatch(loginUser(formData))
-                history.push(routeUrls.Home)
+                 
         }
+
+        useEffect(()=>{
+            if(userData.isLoggining===false){
+                history.push(routeUrls.Home)
+            }
+            dispatch(isLogining(null))
+        },[userData.isLoggining])
         
     return(
       <FormComponent>
@@ -137,3 +141,5 @@ export default function Login(){
             </FormComponent>
     )
 }
+
+export default withRouter(Login)

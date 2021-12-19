@@ -1,4 +1,4 @@
-import { ADD_ACCOUNT, GET_USERS , LOGIN_USER } from "./action-types"
+import { ADD_ACCOUNT, GET_USERS , LOGIN_USER , IS_LOGINING } from "./action-types"
 
 const initialstate={
     data:{
@@ -7,7 +7,8 @@ const initialstate={
     },
     endRequest:true,
     users:[],
-    accounts:[]
+    accounts:[],
+    isLoggining:null,
 }
 
 
@@ -22,9 +23,15 @@ const reducer=(state=initialstate,action)=>{
             return {
                 ...state,
                 data:action.payload,
-            }    
+            } 
+        case IS_LOGINING:
+            return {
+                ...state,
+                isLoggining:action.payload
+            }
             default:
                 return state
+
     }
 }
 export default reducer

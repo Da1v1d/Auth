@@ -1,7 +1,8 @@
 import Main from "../main"
-import Home from "../Home"
+import Home from "../components/Home/Home"
 import CustomPaper from '../components/reuzable-components/Card/BaseCard'
 import { routeUrls } from "./routeUrls"
+import PostPage from "../components/PostPage/PostPage"
 
 export const routes=[
     {
@@ -12,10 +13,11 @@ export const routes=[
     {
         exact:true,
         component:<Home />,
-        path:routeUrls.Home
+        path:routeUrls.Home()
     },
     {
-        component:<CustomPaper />,
-        path:routeUrls.Posts
-    }
+        exact:true,
+        component:<Home />,
+        path:routeUrls.Home('posts')
+    },
 ]

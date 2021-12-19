@@ -9,24 +9,23 @@ export const createEndpointWithUrl = (endpoint) => {
 }
 
 export const fetchUsers = () =>{
-   axios.get(createEndpointWithUrl(endpoints.getAllUsers))
+   return axios.get(createEndpointWithUrl(endpoints.getAllUsers()))
 }
 
 export const createUser =async ( user ) => { 
-    axios.post(createEndpointWithUrl(endpoints.registerUser), user , {withCredentials:true})
+    axios.post(createEndpointWithUrl(endpoints.registerUser()), user , {withCredentials:true})
 }
 
 export const loginUser = async ( user ) =>{
-    const {data} = await axios.post(createEndpointWithUrl(endpoints.loginUser) , user , {withCredentials:true})
+    const {data} = await axios.post(createEndpointWithUrl(endpoints.loginUser()) , user , {withCredentials:true})
     return data
 }
 
 export const userData = async () => {
-    const { data } = await baseApi({
-        url:`${endpoints.getUserData}`,
+    return baseApi({
+        url:endpoints.getUserData(),
         method:'get',
     })
-    return data
 }
 
 

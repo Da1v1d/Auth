@@ -13,11 +13,11 @@ import * as api from '../api/api'
 import FormComponent from "../components/reuzable-components/Form/FormComponent";
 import CustomTextField from '../components/reuzable-components/Input/CustomTextField'
 import withForm from '../components/reuzable-components/Form/withForm'
+import { withRouter } from "react-router-dom";
 
 
-const  Registration= ()=>{
+const  Registration= ({history})=>{
     const dispatch=useDispatch()
-    const history=useHistory()
     const {register, 
         handleSubmit, 
         getValues, 
@@ -121,4 +121,4 @@ const  Registration= ()=>{
 }
 
 
-export default withForm(Registration)
+export default withRouter(withForm(Registration))
