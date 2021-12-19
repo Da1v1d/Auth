@@ -5,9 +5,10 @@ import { useUserData } from '../../customHooks/useUserData'
 import '../../profile.css'
 import { routeUrls } from '../../Routes/routeUrls'
 import { getUserData, getUsers } from '../../store/action'
-import { Button, Container, IconButton , Link , Box , Menu , MenuItem, Avatar, Paper, Tabs, Tab } from '@mui/material'
-import MenuIcon from '@mui/icons-material/Menu'; 
+// import { Button, Container, IconButton , Link , Box , Menu , MenuItem, Avatar, Paper, Tabs, Tab } from '@mui/material'
+// import MenuIcon from '@mui/icons-material/Menu'; 
 import Navbar from '../Navbar/Navbar'
+import { Redirect } from 'react-router-dom'
 
 
 const PostPage = React.lazy(() => import('../PostPage/PostPage'))
@@ -46,17 +47,34 @@ const Home = () => {
     const renderPageContent = (tabValue) => {
         switch (tabValue){
             case 0:
-               history.push(routeUrls.Home('posts'))
                 return (
-                <Suspense
-                    fallback={null}
-                >
-                    <PostPage />
-                </Suspense>
+                    <>
+                        <Redirect to={routeUrls.Home('posts')} />
+                        <Suspense
+                            fallback={null}
+                        >
+                            <PostPage />
+                        </Suspense>
+                    </>
                 )
             case 1:
-                history.push(routeUrls.Home('exo'))
-                return null
+                return (
+                    <>
+                        <Redirect to={routeUrls.Home('news')} />
+                        <div>
+                            asdsd
+                        </div>
+                    </>
+                )
+            case 2:
+                return (
+                    <>
+                        <Redirect to={routeUrls.Home('main')} />
+                        <div>
+                            asdsd
+                        </div>
+                    </>
+                )
         }
 
     }

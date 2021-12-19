@@ -36,6 +36,7 @@ export const loginUser = (user , history) => async (dispatch) =>{
         await dispatch(isLogining(true))
         const data = await api.loginUser(user)
         localStorage.setItem('accesToken', data.accesToken)
+        localStorage.setItem('isLogined', true)
         dispatch({
             type:LOGIN_USER,
             payload:data.user,

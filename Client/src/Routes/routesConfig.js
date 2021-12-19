@@ -1,23 +1,19 @@
-import Main from "../main"
 import Home from "../components/Home/Home"
-import CustomPaper from '../components/reuzable-components/Card/BaseCard'
 import { routeUrls } from "./routeUrls"
-import PostPage from "../components/PostPage/PostPage"
+import Login from "../Login/Login"
+import Registration from "../Registration/Registration"
 
 export const routes=[
     {
-        exact:true,
-        component:<Main />,
-        path:routeUrls.Main
-    },
-    {
-        exact:true,
         component:<Home />,
         path:routeUrls.Home()
     },
-    {
-        exact:true,
-        component:<Home />,
-        path:routeUrls.Home('posts')
-    },
+    // {
+    //     component:<Login />,
+    //     path:routeUrls.Login
+    // },
+    // {
+    //     component:<Registration />,
+    //     path:routeUrls.Registration
+    // },
 ]

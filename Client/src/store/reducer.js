@@ -9,6 +9,7 @@ const initialstate={
     users:[],
     accounts:[],
     isLoggining:null,
+    isLogined:localStorage.getItem('isLogined')
 }
 
 
