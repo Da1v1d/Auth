@@ -9,6 +9,8 @@ import { getUserData, getUsers } from '../../store/user/user-actions'
 // import MenuIcon from '@mui/icons-material/Menu'; 
 import Navbar from '../Navbar/Navbar'
 import { Redirect } from 'react-router-dom'
+import Backdrop from '@mui/material/Backdrop';
+import CircularProgress from '@mui/material/CircularProgress';
 
 
 const PostPage = React.lazy(() => import('../PostPage/PostPage'))
@@ -20,7 +22,7 @@ const CustomMenuItemDialog = React.lazy(()=>import('../reuzable-components/Modal
 
 const Home = () => {
     const dispatch= useDispatch()
-    const {data}= useUserData()
+    const userData= useUserData()
     const history = useHistory()
     const [anchorEl, setAnchorEl] = useState(null);
     const open = Boolean(anchorEl);
@@ -39,10 +41,11 @@ const Home = () => {
         setAnchorEl(null);
       };
 
-    useLayoutEffect(() => {
-        dispatch(getUserData())
+    useEffect(() => {
+            dispatch(getUserData())
     },[])
 
+    
 
     const renderPageContent = (tabValue) => {
         switch (tabValue){
@@ -78,8 +81,7 @@ const Home = () => {
         }
 
     }
-
-    return(
+     return(
         <div style={{width:"100%",minHeight:'100vh', backgroundColor:'#161619'}}>
             {/* <div 
                 style={{
@@ -130,7 +132,7 @@ const Home = () => {
     <Navbar 
         value={tabValue} 
         onChange={handleChange} 
-        menuOptions={['myprofile','logout']}
+        menuOptions={['myprofile']}
         openMenu={open}
         anchorEl={anchorEl}
         handleClose={handleClose}

@@ -2,14 +2,14 @@ import { ADD_ACCOUNT, GET_USERS , LOGIN_USER , IS_LOGINING } from "./user-action
 
 const initialstate={
     data:{
-        login:null,
-        password:null
+        user:null,
+        accesToken:null,
+        isLogined:false
     },
     endRequest:true,
     users:[],
     accounts:[],
-    isLoggining:null,
-    isLogined:localStorage.getItem('isLogined')
+    isLoading:null,
 }
 
 
@@ -28,7 +28,7 @@ const reducer=(state=initialstate,action)=>{
         case IS_LOGINING:
             return {
                 ...state,
-                isLoggining:action.payload
+                isLoading:action.payload
             }
             default:
                 return state

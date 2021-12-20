@@ -11,7 +11,7 @@ import { useForm } from "react-hook-form"
 import { getLocalStorage, setLocalStorage, showErrorMessage } from "../logic"
 import { routeUrls } from "../Routes/routeUrls"
 import { useHistory } from "react-router"
-import { isLogining, loginUser } from "../store/user/user-actions"
+import { getUserData, isLogining, loginUser } from "../store/user/user-actions"
 import * as api from '../api/api'
 import { useUserData } from '../customHooks/useUserData'
 import axios from 'axios'
@@ -19,6 +19,7 @@ import { endpoints } from '../api/endpoint'
 import FormComponent from '../components/reuzable-components/Form/FormComponent'
 import CustomTextField from '../components/reuzable-components/Input/CustomTextField'
 import { withRouter } from 'react-router-dom'
+import { Redirect } from 'react-router-dom'
 
 
 
@@ -27,25 +28,17 @@ import { withRouter } from 'react-router-dom'
 const Login=({history})=>{
     const userData = useUserData()
     const dispatch = useDispatch()
-    const { 
-        register,
-        formState,
-        getValues,
-        handleSubmit
-        } = useForm({mode:'onChange'})
+    const { register, formState, getValues, handleSubmit } = useForm({mode:'onChange'})
     const {errors , isValid , isDirty} = formState
-        const formSubmit = async (formData ) => {
-                dispatch(loginUser(formData))
-                 
-        }
 
-        useEffect(()=>{
-            if(userData.isLoggining===false){
-                history.push(routeUrls.Home)
-            }
-            dispatch(isLogining(null))
-        },[userData.isLoggining])
-        
+
+        const formSubmit = (formData) => {
+                dispatch(loginUser(formData , history))     
+                .then(()=>{
+                    history.push(routeUrls.Home())
+                }) 
+}
+
     return(
       <FormComponent>
             <div className="form-window">
@@ -55,18 +48,6 @@ const Login=({history})=>{
             >
                 <h2 style={{textAlign:'center', color:'#17081d'}}><p>Login</p></h2>
                 <div className="input">
-                    {/* <TextField
-                        {...register('login',{
-                            required:'login field is required',
-                            minLength:{value:4, message:'less then 4'},
-                            maxLength:{value:16 , message: 'more than 16'}})
-                        }
-                        variant="standard" 
-                        label="login" 
-                        fullWidth 
-                        error={Boolean(errors.login)}
-                        helperText={showErrorMessage(errors.login, errors.login?.message)}
-                    /> */}
                     <CustomTextField 
                          {...register('login',{
                             required:'login field is required',
@@ -101,6 +82,7 @@ const Login=({history})=>{
                         }
                         label='password'
                         error={errors.password}
+                        type='password'
                         helperText={showErrorMessage(errors.password, errors.password?.message)}
                     /> 
                 </div>

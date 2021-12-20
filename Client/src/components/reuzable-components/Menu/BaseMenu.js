@@ -20,13 +20,22 @@ const BaseMenu = ({
                 'aria-labelledby': 'basic-button',
             }}
         >
+            
             {menuOptions.map((menu , index ) =>(
                 <MenuItem 
                     key={index} 
                 >
                     {menu}
                 </MenuItem>
+                
             ))}
+            <MenuItem 
+                onClick={()=>{
+                    return localStorage.clear()
+                }}
+            >
+                Logout
+            </MenuItem>
         </Menu>
     )
 }

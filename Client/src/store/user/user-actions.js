@@ -1,5 +1,6 @@
 import { ADD_ACCOUNT , LOGIN_USER, GET_USERS , IS_LOGINING } from "./user-action-types";
 import * as api from '../../api/api'
+import { routeUrls } from "../../Routes/routeUrls";
 
 
 export const addAccount = (data) => {
@@ -11,7 +12,7 @@ export const addAccount = (data) => {
     }
 }
 
-export const isLogining = (logining) =>(dispatch) => {
+export const isLoading = (logining) =>(dispatch) => {
     return dispatch({
         type:IS_LOGINING,
         payload:logining
@@ -33,15 +34,19 @@ export const getUsers = () => async (dispatch) => {
 
 export const loginUser = (user , history) => async (dispatch) =>{
     try {
-        await dispatch(isLogining(true))
+        dispatch(isLoading(true))
         const data = await api.loginUser(user)
-        localStorage.setItem('accesToken', data.accesToken)
+        localStorage.setItem('accessToken', data.accesToken)
         localStorage.setItem('isLogined', true)
-        dispatch({
+        await dispatch({
             type:LOGIN_USER,
-            payload:data.user,
+            payload:{
+                user:data.user,
+                accesToken:data.accesToken,
+                isLogined:true
+            },
         }) 
-        await dispatch(isLogining(false))
+        dispatch(isLoading(false))
     } catch (error) {
         console.log(error)
     }
@@ -49,12 +54,14 @@ export const loginUser = (user , history) => async (dispatch) =>{
 
 export const getUserData = () => async (dispatch) => {
     try {
+        dispatch(isLoading(true))
         const data = await api.userData()
         dispatch ({
             type:LOGIN_USER,
             payload:data
         })
+        dispatch(isLoading(false))
     } catch (error) {
-        
+        console.log(error)
     }
 }

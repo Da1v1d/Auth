@@ -7,9 +7,9 @@ import { routeUrls } from '../../Routes/routeUrls'
 
 
 const ProtectedRoute = ({Component, history , ...rest})=>{
-    const { isLogined } = useUserData()
+    const { data } = useUserData()
     const renderProtectedComponent = () => {
-        if(isLogined){
+        if(data?.isLogined || localStorage.getItem('isLogined')){
             return Component
         }
         else history.push(routeUrls.Login)
