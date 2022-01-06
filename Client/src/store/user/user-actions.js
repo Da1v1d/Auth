@@ -55,7 +55,7 @@ export const loginUser = (user , history) => async (dispatch) =>{
 export const getUserData = () => async (dispatch) => {
     try {
         dispatch(isLoading(true))
-        const data = await api.userData()
+        const {data} = await api.userData()
         dispatch ({
             type:LOGIN_USER,
             payload:data

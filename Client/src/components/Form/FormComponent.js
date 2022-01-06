@@ -1,6 +1,6 @@
 import React from 'react'
 import { Paper } from '@mui/material'
-import '../../../main.css'
+import '../../main.css'
 
 
 

@@ -1,7 +1,7 @@
 import React from 'react'
 import { AppBar , Box, Button } from '@mui/material'
-import BaseTab from '../reuzable-components/Tabs/BaseTab'
-import BaseMenu from '../reuzable-components/Menu/BaseMenu'
+import BaseTab from '../Tabs/BaseTab'
+import BaseMenu from '../Menu/BaseMenu'
 import { routeUrls } from '../../Routes/routeUrls'
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import { IconButton , Avatar } from '@mui/material'
@@ -65,8 +65,7 @@ const Navbar = ({
             <IconButton
                 onClick={handleClickMenu}
            >
-                <Avatar sx={{bgcolor:'#161619',color:'white'}}>
-                </Avatar>
+                <Avatar sx={{bgcolor:'#161619',color:'white'}} />
             </IconButton>
 
              <BaseMenu 

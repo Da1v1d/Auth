@@ -1,6 +1,6 @@
 import React from 'react'
-import BaseDialog from '../reuzable-components/Modal/BaseDialog'
-import withPostState from './withPostState'
+import BaseDialog from '../BaseDialog/BaseDialog'
+import withPostState from '../../PostPage/withPostState' 
 
 
 const PostDialog = ({
@@ -10,6 +10,7 @@ const PostDialog = ({
     return (
         <>
             <BaseDialog 
+                title='title'
                 isOpen={postState.isOpenPostDialog}
                 closeDialog={closeDialog}
             />

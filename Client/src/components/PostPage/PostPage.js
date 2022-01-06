@@ -2,8 +2,8 @@ import { Button } from '@mui/material'
 import React from 'react'
 import { useDispatch } from 'react-redux'
 import { openPostDialog } from '../../store/posts/post-actions'
-import BaseCard from '../reuzable-components/Card/BaseCard'
-import PostDialog from './PostDialog'
+import BaseCard from '../Card/BaseCard'
+import PostDialog from '../Dialog/PostDialog/PostDialog'
 
 
 

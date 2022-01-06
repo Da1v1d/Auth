@@ -11,10 +11,11 @@ import Navbar from '../Navbar/Navbar'
 import { Redirect } from 'react-router-dom'
 import Backdrop from '@mui/material/Backdrop';
 import CircularProgress from '@mui/material/CircularProgress';
-
+import PostDialog from '../Dialog/PostDialog/PostDialog'
+import { renderPageContent } from './utils'
 
 const PostPage = React.lazy(() => import('../PostPage/PostPage'))
-const CustomMenuItemDialog = React.lazy(()=>import('../reuzable-components/Modal/CustomMenuItemDialog'))
+const CustomMenuItemDialog = React.lazy(()=>import('../Dialog/CustomMenuItemDialog'))
 
 
 
@@ -45,45 +46,31 @@ const Home = () => {
             dispatch(getUserData())
     },[])
 
-    
-
-    const renderPageContent = (tabValue) => {
-        switch (tabValue){
-            case 0:
-                return (
-                    <>
-                        <Redirect to={routeUrls.Home('posts')} />
-                        <Suspense
-                            fallback={null}
-                        >
-                            <PostPage />
-                        </Suspense>
-                    </>
-                )
-            case 1:
-                return (
-                    <>
-                        <Redirect to={routeUrls.Home('news')} />
-                        <div>
-                            asdsd
-                        </div>
-                    </>
-                )
-            case 2:
-                return (
-                    <>
-                        <Redirect to={routeUrls.Home('main')} />
-                        <div>
-                            asdsd
-                        </div>
-                    </>
-                )
-        }
-
-    }
-     return(
+ return(
         <div style={{width:"100%",minHeight:'100vh', backgroundColor:'#161619'}}>
-            {/* <div 
+           
+    <Navbar 
+        value={tabValue} 
+        onChange={handleChange} 
+        menuOptions={['myprofile']}
+        openMenu={open}
+        anchorEl={anchorEl}
+        handleClose={handleClose}
+        handleClickMenu={handleClickMenu}
+    />
+    <div style={{color:'white',margin:'40px 0 0 40px',fontSize:'30px'}}> 
+        {userData.data.userName}
+
+    </div>
+        {renderPageContent(tabValue)}
+    </div>
+    )
+}
+
+export default  Home
+
+
+ {/* <div 
                 style={{
                     display:'flex',
                     alignItems:'center'
@@ -129,18 +116,3 @@ const Home = () => {
                         localStorage.removeItem('accesToken')
                     }}>Logout</MenuItem>
                 </Menu> */}
-    <Navbar 
-        value={tabValue} 
-        onChange={handleChange} 
-        menuOptions={['myprofile']}
-        openMenu={open}
-        anchorEl={anchorEl}
-        handleClose={handleClose}
-        handleClickMenu={handleClickMenu}
-    />
-        {renderPageContent(tabValue)}
-    </div>
-    )
-}
-
-export default  Home

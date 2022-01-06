@@ -8,11 +8,9 @@ export default function App() {
 
   return (     
     <div className='App'>
-      <div className='appContainer'>
         <Router>
           <Routes />     
         </Router>
-        </div>
     </div>
   );
 }

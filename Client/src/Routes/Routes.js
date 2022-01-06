@@ -3,7 +3,6 @@ import { routes } from "./routesConfig"
 import Login from "../Login/Login"
 import Registration from "../Registration/Registration"
 import { routeUrls } from "./routeUrls"
-import AccesControl from "../components/AccesControl/AccesControl"
 import ProtectedRoute from "../components/ProtectedRoute/ProtectedRoute"
 
 

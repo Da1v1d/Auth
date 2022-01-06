@@ -6,7 +6,7 @@ import { showErrorMessage , setLocalStorage } from "../../../logic";
 
 
 
-const CustomTextField = ({
+const BaseTextField = ({
     label,
     error,
     helperText,
@@ -46,4 +46,4 @@ const CustomTextField = ({
     )
 }
 
-export default React.forwardRef(CustomTextField)
+export default React.forwardRef(BaseTextField)

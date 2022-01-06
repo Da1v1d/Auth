@@ -19,9 +19,7 @@ const ProtectedRoute = ({Component, history , ...rest})=>{
         <Route
             {...rest}
             render={()=>renderProtectedComponent()}
-        >
-            {}
-        </Route>
+        />
     )
     
 }

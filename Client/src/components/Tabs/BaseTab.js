@@ -34,4 +34,4 @@ const BaseTab = ({
     )
 }
 
-export default React.memo(BaseTab)
+export default BaseTab

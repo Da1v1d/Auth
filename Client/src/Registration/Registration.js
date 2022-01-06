@@ -10,39 +10,36 @@ import { addAccount, createUser } from "../store/user/user-actions";
 import { useEffect } from "react";
 import { useUserData } from "../customHooks/useUserData";
 import * as api from '../api/api'
-import FormComponent from "../components/reuzable-components/Form/FormComponent";
-import CustomTextField from '../components/reuzable-components/Input/CustomTextField'
-import withForm from '../components/reuzable-components/Form/withForm'
+import FormComponent from "../components/Form/FormComponent";
+import BaseTextField from '../components/Input/BaseTextField/BaseTextField'
 import { withRouter } from "react-router-dom";
 
 
 const  Registration= ({history})=>{
     const dispatch=useDispatch()
-    const {register, 
+    const {
+        register, 
         handleSubmit, 
         getValues, 
         formState: {errors , isDirty, isValid}
-        } = useForm({
-        mode:'onChange'
-    })
-    const data = useUserData()
+        } = useForm({ mode:'onChange' })
 
     const onSubmit =  (data) => {
-        const formData = 
-        {
+        const formData = {
             login:data.login,
             password:data.password
         }
         api.createUser(formData)
-        history.push(routeUrls.Login) 
+            .then(()=>history.push(routeUrls.Login))
     }
 
     return(
+        <FormComponent>
                 <div className="form-window">
                     <form style={{width:'300px' ,}} onSubmit={handleSubmit(onSubmit)}  >
                         <h2 style={{textAlign:'center', color:'#17081d'}}><p>Registration</p></h2>
                         <div className="input">
-                            <CustomTextField 
+                            <BaseTextField 
                                 {...register('login',
                                 {required:'login field is required',
                                 minLength:{value:4, message:'less then 4'},
@@ -54,7 +51,7 @@ const  Registration= ({history})=>{
                             />
                         </div>
                         <div className="input">
-                              <CustomTextField 
+                              <BaseTextField 
                                 {...register('password',
                                     {required:'password field is required',
                                     minLength:{value:4, message:'less then 4'},
@@ -67,13 +64,13 @@ const  Registration= ({history})=>{
                             />
                         </div>
                         <div className="input">
-                             <CustomTextField 
+                             <BaseTextField 
                                  {...register('confirm_password',
                                  {required:'confirm password field is required',
                                  minLength:{value:4, message:'less then 4'},
                                  maxLength:{value:16 , message: 'more than 16'},
                                  validate:value => 
-                                     value===getValues('password') || 'aaa'
+                                     value===getValues('password') || 'wrong password'
                                  })}
                                 label='password'
                                 type='password'
@@ -117,8 +114,9 @@ const  Registration= ({history})=>{
                         </div>
                     </form>
                 </div>
+                </FormComponent>
     )
 }
 
 
-export default withRouter(withForm(Registration))
+export default withRouter(Registration)

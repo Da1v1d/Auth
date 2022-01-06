@@ -8,12 +8,4 @@ export const routes=[
         component:<Home />,
         path:routeUrls.Home()
     },
-    // {
-    //     component:<Login />,
-    //     path:routeUrls.Login
-    // },
-    // {
-    //     component:<Registration />,
-    //     path:routeUrls.Registration
-    // },
 ]

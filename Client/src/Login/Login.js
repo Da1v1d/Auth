@@ -16,8 +16,8 @@ import * as api from '../api/api'
 import { useUserData } from '../customHooks/useUserData'
 import axios from 'axios'
 import { endpoints } from '../api/endpoint'
-import FormComponent from '../components/reuzable-components/Form/FormComponent'
-import CustomTextField from '../components/reuzable-components/Input/CustomTextField'
+import FormComponent from '../components/Form/FormComponent'
+import BaseTextField from '../components/Input/BaseTextField/BaseTextField'
 import { withRouter } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
 
@@ -48,7 +48,7 @@ const Login=({history})=>{
             >
                 <h2 style={{textAlign:'center', color:'#17081d'}}><p>Login</p></h2>
                 <div className="input">
-                    <CustomTextField 
+                    <BaseTextField 
                          {...register('login',{
                             required:'login field is required',
                             minLength:{value:4, message:'less then 4'},
@@ -60,20 +60,7 @@ const Login=({history})=>{
                     /> 
                 </div>
                 <div className="input">
-                    {/* <TextField  
-                        {...register('password',
-                            {required:'password field is required',
-                            minLength:{value:4, message:'less then 4'},
-                            maxLength:{value:16 , message: 'more than 16'}
-                            })
-                        }
-                        variant="standard" 
-                        label="password"  
-                        fullWidth
-                        error={Boolean(errors.password)}
-                        helperText={showErrorMessage(errors.password, errors.password?.message)}
-                    /> */}
-                     <CustomTextField 
+                     <BaseTextField 
                         {...register('password',
                             {required:'password field is required',
                             minLength:{value:4, message:'less then 4'},
