@@ -3,6 +3,7 @@ import {Button, Dialog, DialogActions, DialogContent, DialogTitle} from '@mui/ma
 import CloseIcon from '@mui/icons-material/Close'; 
 import PropTypes from 'prop-types'
 import { baseDialogStyles } from './styles/style';
+import BaseButton from '../../Buttons/BaseButton';
 
 const BaseDialog = ({
     isOpen,
@@ -36,12 +37,13 @@ const BaseDialog = ({
             <DialogActions
                 sx={baseDialogStyles.dialogAction}
             >
-                <Button variant='contained'>
-                    Ok
-                </Button>
-                <Button variant='contained' color='error'>
-                    CANCEL
-                </Button>
+                <BaseButton 
+                    buttonTitle = 'OK'
+                />
+                <BaseButton 
+                    buttonTitle = 'Cancel'
+                    buttonStyle={{background:'white',color:'black','&:hover' : {background:'white'}}}
+                />
             </DialogActions>
         </Dialog>
     )
@@ -49,7 +51,7 @@ const BaseDialog = ({
 
 
 BaseDialog.propTypes={
-    title:PropTypes.string.isRequired
+    title:PropTypes.string.isRequired,
 }
 
 export default BaseDialog

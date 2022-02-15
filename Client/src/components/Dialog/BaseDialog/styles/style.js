@@ -2,7 +2,8 @@ export const baseDialogStyles = {
     dialog:{
         '& .MuiDialog-paper':{
             background:'#26262A',
-            color:'white'
+            color:'white',
+            borderRadius: '7px'
         },
         '&.MuiDialogTitle-root':{
             display:'flex',
@@ -15,7 +16,10 @@ export const baseDialogStyles = {
         justifyContent:'space-between'
     },
     dialogIcon:{
-        color:'white'
+        color:'white',
+        '&:hover': {
+            cursor:'pointer'
+        }
     },
     dialogAction:{
         float:'right',

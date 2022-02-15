@@ -16,12 +16,9 @@ const BaseMenu = ({
             anchorEl={anchorEl}
             open={openMenu}
             onClose={handleClose}
-            MenuListProps={{
-                'aria-labelledby': 'basic-button',
-            }}
         >
             
-            {menuOptions.map((menu , index ) =>(
+            {menuOptions?.map((menu , index ) =>(
                 <MenuItem 
                     key={index} 
                 >
@@ -29,11 +26,7 @@ const BaseMenu = ({
                 </MenuItem>
                 
             ))}
-            <MenuItem 
-                onClick={()=>{
-                    return localStorage.clear()
-                }}
-            >
+            <MenuItem onClick={()=> localStorage.clear()}>
                 Logout
             </MenuItem>
         </Menu>

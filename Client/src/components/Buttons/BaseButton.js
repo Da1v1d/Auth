@@ -4,23 +4,33 @@ import PropTypes from 'prop-types';
 
 const BaseButton = (
     {
-        buttonTitle
+        buttonTitle,
+        buttonStyle,
+        ...props
     }
 ) => {
+
+
+    const buttonStyles = {
+        background:'black',
+        borderRadius: '10px',
+        padding:'6px 15px',
+        '&:hover':{
+            background:'#101010'
+        },
+    }
 
     return (
         <Button
             variant='contained'
             size='medium'
-            
+            sx = {{...buttonStyles, ...buttonStyle}}
+            {...props}
         >
             {buttonTitle}
         </Button>
     )
 }
 
-BaseButton.propTypes={
-    buttonTitle:PropTypes.string.isRequired
-}
 
 export default BaseButton

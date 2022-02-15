@@ -1,33 +1,35 @@
-import React from 'react'
-import { AppBar , Box, Button } from '@mui/material'
+import React, {useState, useCallback} from 'react'
+import { AppBar , Box } from '@mui/material'
 import BaseTab from '../Tabs/BaseTab'
 import BaseMenu from '../Menu/BaseMenu'
-import { routeUrls } from '../../Routes/routeUrls'
-import { useHistory } from 'react-router-dom/cjs/react-router-dom.min'
 import { IconButton , Avatar } from '@mui/material'
 
 
 const Navbar = ({
-    value,
-    onChange,
-    handleClose,
-    anchorEl,
-    openMenu,
+    tabValue,
+    setTabValue,
     menuOptions,
-    handleClickMenu
 }) => {
-    const history=useHistory()
+
+    const [anchorEl, setAnchorEl] = useState(null);
+    const open = Boolean(anchorEl);
+
+    const handleChange = useCallback((event, newValue)=>{
+        setTabValue(newValue);
+    })
+
+    const handleClickMenu = (e) => {
+        setAnchorEl(e.currentTarget);
+    };  
+
+    const handleClose = () => {
+        setAnchorEl(null);
+      };
 
     const tabOptions = [
-        {
-        label:'Posts'
-        },
-        {
-        label:'News'
-        },
-        {
-        label:'Main'
-        },
+        {label:'Posts'},
+        {label:'News'},
+        {label:'Main'},
     ]
 
 
@@ -49,8 +51,8 @@ const Navbar = ({
                 }}
             >
                 <BaseTab 
-                    value={value} 
-                    onChange={onChange}
+                    value={tabValue} 
+                    onChange={handleChange}
                     tabOptions={tabOptions} 
                 />
                 {/* <Button 
@@ -62,25 +64,17 @@ const Navbar = ({
                 >
                     logout
                 </Button> */}
-            <IconButton
-                onClick={handleClickMenu}
-           >
-                <Avatar sx={{bgcolor:'#161619',color:'white'}} />
+            <IconButton onClick={handleClickMenu}>
+                <Avatar sx={{bgcolor:'#161619', color:'white'}} />
             </IconButton>
 
              <BaseMenu 
                 menuOptions={menuOptions}
-                openMenu={openMenu}
+                openMenu={open}
                 anchorEl={anchorEl}
                 handleClose={handleClose}
             />
             </Box>
-
-
-            {/* <div>
-            
-            </div> */}
-
         </AppBar>
     )
 }

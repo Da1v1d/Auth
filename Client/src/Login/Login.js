@@ -20,6 +20,7 @@ import FormComponent from '../components/Form/FormComponent'
 import BaseTextField from '../components/Input/BaseTextField/BaseTextField'
 import { withRouter } from 'react-router-dom'
 import { Redirect } from 'react-router-dom'
+import SubmitButton from '../components/Buttons/SubmitButton'
 
 
 
@@ -74,7 +75,7 @@ const Login=({history})=>{
                     /> 
                 </div>
                 <div className='confirmreg'>
-                <Button 
+                {/* <Button 
                     fullWidth
                     variant='contained' 
                     disabled={!isValid || !isDirty} 
@@ -87,7 +88,11 @@ const Login=({history})=>{
                     type="submit" 
                 >
                     Login
-                </Button>
+                </Button> */}
+                <SubmitButton 
+                    disabled={!isValid || !isDirty} 
+                    buttonTitle={'Login'}
+                />
                 <Button 
                     fullWidth
                     variant='contained' 

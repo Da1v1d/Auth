@@ -62,6 +62,7 @@ export const getUserData = () => async (dispatch) => {
         })
         dispatch(isLoading(false))
     } catch (error) {
+        // localStorage.clear()
         console.log(error)
     }
 }

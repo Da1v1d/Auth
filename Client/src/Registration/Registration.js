@@ -13,6 +13,7 @@ import * as api from '../api/api'
 import FormComponent from "../components/Form/FormComponent";
 import BaseTextField from '../components/Input/BaseTextField/BaseTextField'
 import { withRouter } from "react-router-dom";
+import SubmitButton from "../components/Buttons/SubmitButton";
 
 
 const  Registration= ({history})=>{
@@ -81,20 +82,10 @@ const  Registration= ({history})=>{
                         </div>
 
                         <div className="confirmreg">
-                            <Button  
-                                sx={{
-                                    backgroundColor:'#171010',
-                                    '&:hover':{
-                                        backgroundColor:'#282430',
-                                    }
-                                }}
-                                fullWidth
-                                type="submit" 
-                                variant="contained" 
+                            <SubmitButton
                                 disabled={!isValid || !isDirty} 
-                            >
-                                Create Account
-                            </Button>
+                                buttonTitle={'Create Account'}
+                            />
                             <Button 
                                 sx={{
                                     backgroundColor:'#423F3E',

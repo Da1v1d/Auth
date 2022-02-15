@@ -1,8 +1,8 @@
 import { Redirect } from 'react-router-dom'
-import PostDialog from '../Dialog/PostDialog/PostDialog'
+import PostDialog from '../../components/Dialog/PostDialog/PostDialog'
 import { routeUrls } from '../../Routes/routeUrls'
 import React, { Suspense } from 'react'
-const PostPage = React.lazy(() => import('../PostPage/PostPage'))
+const PostPage = React.lazy(() => import('../../components/PostPage/PostPage'))
 
 
 

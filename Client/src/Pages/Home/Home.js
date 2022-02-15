@@ -1,69 +1,41 @@
-import React, { useEffect , useState , Suspense , useCallback, useLayoutEffect } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
-import { useHistory } from 'react-router'
-import { useUserData } from '../../customHooks/useUserData'
+import React, { useEffect, useState, useCallback} from 'react'
+import { useDispatch } from 'react-redux'
 import '../../profile.css'
-import { routeUrls } from '../../Routes/routeUrls'
 import { getUserData, getUsers } from '../../store/user/user-actions'
-// import { Button, Container, IconButton , Link , Box , Menu , MenuItem, Avatar, Paper, Tabs, Tab } from '@mui/material'
-// import MenuIcon from '@mui/icons-material/Menu'; 
-import Navbar from '../Navbar/Navbar'
-import { Redirect } from 'react-router-dom'
-import Backdrop from '@mui/material/Backdrop';
-import CircularProgress from '@mui/material/CircularProgress';
-import PostDialog from '../Dialog/PostDialog/PostDialog'
+import Navbar from '../../components/Navbar/Navbar'
 import { renderPageContent } from './utils'
-
-const PostPage = React.lazy(() => import('../PostPage/PostPage'))
-const CustomMenuItemDialog = React.lazy(()=>import('../Dialog/CustomMenuItemDialog'))
-
-
-
+import { useRedux } from '../../customHooks/useRedux'
+import './Home.css';
+const CustomMenuItemDialog = React.lazy(()=>import('../../components/Dialog/CustomMenuItemDialog'))
 
 
 const Home = () => {
     const dispatch= useDispatch()
-    const userData= useUserData()
-    const history = useHistory()
-    const [anchorEl, setAnchorEl] = useState(null);
-    const open = Boolean(anchorEl);
-    const [tabValue, setTabValue] = useState(0)
-
-    const handleChange = useCallback((event, newValue)=>{
-        setTabValue(newValue);
-    })
-
-
-    const handleClickMenu = (e) => {
-        setAnchorEl(e.currentTarget);
-    };  
-
-    const handleClose = () => {
-        setAnchorEl(null);
-      };
+    const userData = useRedux('userReducer');
+    const [tabValue, setTabValue] = useState(0);
 
     useEffect(() => {
             dispatch(getUserData())
+            console.log(userData);
     },[])
 
- return(
-        <div style={{width:"100%",minHeight:'100vh', backgroundColor:'#161619'}}>
-           
-    <Navbar 
-        value={tabValue} 
-        onChange={handleChange} 
-        menuOptions={['myprofile']}
-        openMenu={open}
-        anchorEl={anchorEl}
-        handleClose={handleClose}
-        handleClickMenu={handleClickMenu}
-    />
-    <div style={{color:'white',margin:'40px 0 0 40px',fontSize:'30px'}}> 
-        {userData.data.userName}
+    return (
+        <div 
+            className='home'
+        >
+        
+            <Navbar 
+                setTabValue={setTabValue} 
+                tabValue={tabValue} 
+            />
 
-    </div>
-        {renderPageContent(tabValue)}
-    </div>
+            <div className='home__content'> 
+                {userData.data.userName}
+            </div>
+
+            {renderPageContent(tabValue)}
+
+        </div>
     )
 }
 
